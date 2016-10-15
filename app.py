@@ -29,7 +29,7 @@ api.add_resource(Churches, '/churches')
 class Church(Resource):
     def get(self, wikidata):
         conn = e.connect()
-        query = conn.execute("SELECT * FROM churches WHERE wikidata = '%s'"%wikidata)
+        query = conn.execute("SELECT * FROM churches WHERE wikidata = '{0}'".format(wikidata))
 
         return {'church': [dict(zip(tuple (query.keys()) ,i)) for i in query.cursor]}
 
@@ -46,7 +46,7 @@ class BoundingBox(Resource):
         #args['north']
         #args['west']
 
-        query = conn.execute("SELECT * FROM churches WHERE lon <= '%(south)s' AND lon >= '%(east)s' AND lat >= '%(north)s' AND lat <= '%(west)s'"%args)
+        query = conn.execute("SELECT * FROM churches WHERE lon <= '{0}' AND lon >= '{1}' AND lat >= '{2}' AND lat <= '{3}'".format(args['south'], args['east'], args['north'], args['west']))
 
         return {'churches': [dict(zip(tuple (query.keys()) ,i)) for i in query.cursor]}
 
