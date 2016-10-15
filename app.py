@@ -1,10 +1,6 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
 from sqlalchemy import create_engine
-from json import dumps
-
-# Create a engine for connecting to SQLite3.
-# Assuming salaries.db is in your app root folder
 
 e = create_engine('sqlite:///database/db.sqlite')
 
