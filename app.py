@@ -7,6 +7,13 @@ e = create_engine('sqlite:///database/db.sqlite')
 app = Flask(__name__)
 api = Api(app)
 
+# CORS headers
+@app.after_request
+def after_request(response):
+  response.headers.add('Access-Control-Allow-Origin', '*')
+  response.headers.add('Access-Control-Allow-Methods', 'GET')
+  return response
+
 # Returns a list of all churches in the database
 # Never use this endpoint
 class Churches(Resource):
