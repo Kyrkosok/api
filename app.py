@@ -1,6 +1,13 @@
+import sys
 from flask import Flask, request
 from flask_restful import Resource, Api
 from sqlalchemy import create_engine
+
+# this is requried for uwsgi web servers(Tool Labs)
+# why sys is reloaded:
+# http://www.ianbicking.org/illusive-setdefaultencoding.html
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 e = create_engine('sqlite:///database/db.sqlite')
 
