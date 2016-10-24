@@ -75,4 +75,4 @@ class LabelSerach(Resource):
 api.add_resource(LabelSerach, '/churches/label')
 
 if __name__ == '__main__':
-     app.run()
+    app.run()
