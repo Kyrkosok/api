@@ -7,8 +7,8 @@ from sqlalchemy import create_engine
 # why sys is reloaded:
 # http://www.ianbicking.org/illusive-setdefaultencoding.html
 if sys.version[0] == '2':
-  reload(sys)
-  sys.setdefaultencoding('utf-8')
+    reload(sys)
+    sys.setdefaultencoding('utf-8')
 
 e = create_engine('sqlite:///database/db.sqlite')
 
@@ -18,9 +18,9 @@ api = Api(app)
 # CORS headers
 @app.after_request
 def after_request(response):
-  response.headers.add('Access-Control-Allow-Origin', '*')
-  response.headers.add('Access-Control-Allow-Methods', 'GET')
-  return response
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Methods', 'GET')
+    return response
 
 # Returns a list of all churches in the database
 # Never use this endpoint
@@ -54,7 +54,7 @@ class BoundingBox(Resource):
         #args['north']
         #args['south']
 
-        query = conn.execute("SELECT * FROM churches WHERE lon >= {0} AND lon <= {1} AND lat <= {2} AND lat >= {3}".format(float(args['west']), float(args['east']), float(args['north']), float(args['south'])))
+        query = conn.execute("SELECT * FROM churches WHERE lon >= {0} AND lon <= {1} AND lat <= {2} AND lat >= {3} LIMIT 15".format(float(args['west']), float(args['east']), float(args['north']), float(args['south'])))
 
         return {'churches': [dict(zip(tuple (query.keys()) ,i)) for i in query.cursor]}
 
@@ -68,7 +68,7 @@ class LabelSerach(Resource):
         #args['text']
         text = args['text']
 
-        query = conn.execute("SELECT * FROM churches WHERE label LIKE '%{0}%'".format(text))
+        query = conn.execute("SELECT * FROM churches WHERE label LIKE '%{0}%' LIMIT 15".format(text))
 
         return {'churches': [dict(zip(tuple (query.keys()) ,i)) for i in query.cursor]}
 
