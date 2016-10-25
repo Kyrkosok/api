@@ -43,7 +43,6 @@ class Church(Resource):
 
 api.add_resource(Church, '/churches/<string:wikidata>')
 
-#TODO actually test this
 class BoundingBox(Resource):
     def get(self):
         conn = e.connect()
@@ -54,7 +53,7 @@ class BoundingBox(Resource):
         #args['north']
         #args['south']
 
-        query = conn.execute("SELECT * FROM churches WHERE lon >= {0} AND lon <= {1} AND lat <= {2} AND lat >= {3} LIMIT 15".format(float(args['west']), float(args['east']), float(args['north']), float(args['south'])))
+        query = conn.execute("SELECT `wikidata`, `lat`, `lon` FROM churches WHERE lon >= {0} AND lon <= {1} AND lat <= {2} AND lat >= {3} LIMIT 15".format(float(args['west']), float(args['east']), float(args['north']), float(args['south'])))
 
         return {'churches': [dict(zip(tuple (query.keys()) ,i)) for i in query.cursor]}
 
