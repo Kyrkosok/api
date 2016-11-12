@@ -53,7 +53,7 @@ class BoundingBox(Resource):
         #args['north']
         #args['south']
 
-        query = conn.execute("SELECT `wikidata`, `lat`, `lon` FROM churches WHERE lon <= {0} AND lon >= {1} AND lat <= {2} AND lat >= {3}".format(float(args['west']), float(args['east']), float(args['north']), float(args['south'])))
+        query = conn.execute("SELECT `wikidata`, `label`, `lat`, `lon` FROM churches WHERE lon <= {0} AND lon >= {1} AND lat <= {2} AND lat >= {3}".format(float(args['west']), float(args['east']), float(args['north']), float(args['south'])))
 
         return {'churches': [dict(zip(tuple (query.keys()) ,i)) for i in query.cursor]}
 
