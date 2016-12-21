@@ -30,3 +30,9 @@ The SQLite database provided within this repository is created in another reposi
 ```
 /churches/bbox?south=<float>&east=<float>&north=<float>&west=<float>
 ```
+
+### Get a set of random churches:
+
+```
+/churches/random?limit=1
+```

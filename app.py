@@ -73,5 +73,19 @@ class LabelSerach(Resource):
 
 api.add_resource(LabelSerach, '/churches/label')
 
+class Random(Resource):
+    def get(self):
+        conn = e.connect()
+
+        args = request.args
+        #args['limit']
+        limit = args['limit']
+
+        query = conn.execute("SELECT * FROM churches WHERE wikidata IN (SELECT wikidata FROM churches ORDER BY RANDOM() LIMIT {0})".format(limit))
+
+        return {'churches': [dict(zip(tuple (query.keys()) ,i)) for i in query.cursor]}
+
+api.add_resource(Random, '/churches/random')
+
 if __name__ == '__main__':
     app.run()
