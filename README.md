@@ -3,9 +3,6 @@
 ## Requirements
 
  - Python 3.5+
- - Flask(`pip install flask`)
- - Flask RESTful(`pip install flask-restful`)
- - SQLAlchemy(`pip install sqlalchemy`)
 
 ## Database
 
