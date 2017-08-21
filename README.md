@@ -25,7 +25,7 @@ The SQLite database provided within this repository is created in another reposi
 /churches/label?text=<string:value>
 ```
 
-### Search within bounding box:
+### Search within bounding box (returns a subset of fields):
 
 ```
 /churches/bbox?south=<float>&east=<float>&north=<float>&west=<float>
@@ -35,4 +35,10 @@ The SQLite database provided within this repository is created in another reposi
 
 ```
 /churches/random?limit=1
+```
+
+### Get all churches (returns a subset of fields):
+
+```
+/churches
 ```
