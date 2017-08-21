@@ -3,7 +3,7 @@ from flask import Flask, request
 from flask_restful import Resource, Api
 from sqlalchemy import create_engine
 
-# this is requried for uwsgi web servers/python 2(Tool Labs)
+# this is required for uwsgi web servers/python 2(Tool Labs)
 # why sys is reloaded:
 # http://www.ianbicking.org/illusive-setdefaultencoding.html
 if sys.version[0] == '2':
@@ -29,7 +29,7 @@ class Churches(Resource):
         # Connect to databse
         conn = e.connect()
         # Perform query and return JSON data
-        query = conn.execute("SELECT * FROM churches")
+        query = conn.execute("SELECT `wikidata`, `label`, `lat`, `lon` FROM churches")
         return {'churches': [i for i in query.cursor.fetchall()]}
 
 api.add_resource(Churches, '/churches')
